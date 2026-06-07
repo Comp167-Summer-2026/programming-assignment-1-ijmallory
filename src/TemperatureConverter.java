@@ -31,20 +31,22 @@ public class TemperatureConverter {
             } else {
                 if (isValidDouble(tempInput)) {
                     double temperature = Double.parseDouble(tempInput);
+                    boolean validUnitEntered = false;
+                    while (!validUnitEntered) {
+                        System.out.print("Prompt the user for the unit (C or F): ");
+                        String unit = scanner.nextLine().trim();
+                        if (unit.equalsIgnoreCase("C") || unit.equalsIgnoreCase("F")) {
+                            validUnitEntered = true;
+                            double convertedTemp = convertTemperature(temperature, unit);
 
-                    System.out.print("Prompt the user for the unit (C or F): ");
-                    String unit = scanner.nextLine().trim();
-
-                    if (unit.equalsIgnoreCase("C") || unit.equalsIgnoreCase("F")) {
-                        double convertedTemp = convertTemperature(temperature, unit);
-
-                        if (unit.equalsIgnoreCase("C")) {
-                            System.out.printf("%.2fF is equal to %.2fF%n", temperature, convertedTemp);
+                            if (unit.equalsIgnoreCase("C")) {
+                                System.out.printf("%.2fF is equal to %.2fF%n", temperature, convertedTemp);
+                            } else {
+                                System.out.printf("%.2fF is equal to %.2fC%n", temperature, convertedTemp);
+                            }
                         } else {
-                            System.out.printf("%.2fF is equal to %.2fC%n", temperature, convertedTemp);
+                            System.out.println("Error: Unrecognized unit label. Please enter 'C' or 'F'.");
                         }
-                    } else {
-                        System.out.println("Error: Unrecognized unit label. Please enter 'C' or 'F'.");
                     }
                 } else {
                     System.out.println("Error: Invalid temperature input. Please enter a valid number.");
