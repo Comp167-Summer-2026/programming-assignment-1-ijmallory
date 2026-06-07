@@ -50,7 +50,6 @@ public class TemperatureConverter {
                     System.out.println("Error: Invalid temperature input. Please enter a valid number.");
                 }
             }
-            System.out.println();
         }
         scanner.close();
     }
